@@ -4,7 +4,7 @@
 
 这个仓库用于开发、整理和分享可复用的 AI agent skills。仓库中的 skill 默认使用英文编写，以便更容易在不同 agent harness 和团队之间共享。
 
-每个 skill 都应该是一个自包含目录，核心入口文件为 `SKILL.md`。skill 应尽量遵循 [Agent Skills](https://agentskills.io/) 约定，并保持与 pi 兼容。
+每个 skill 都应该是一个自包含目录，核心入口文件为 `SKILL.md`。skill 应尽量遵循 [Agent Skills](https://agentskills.io/) 约定，并避免绑定到某个特定 agent 实现。
 
 ## 仓库结构
 
@@ -49,25 +49,22 @@ description: Clearly explain what this skill does and when an agent should use i
 - `description` 要具体，便于 agent 判断何时加载该 skill。
 - skill 内引用脚本、文档和资源时，使用相对于 skill 目录的路径。
 
-## 在 pi 中使用
+## 安装 skills
 
-任选一种方式：
+使用 `npx` 调用 `skills` CLI 从本仓库安装 skills：
 
 ```bash
-# 直接加载某个 skill
-pi --skill /path/to/this-repo/skills/my-skill
+# 只列出可用 skills，不安装
+npx skills add pidofme/skills --list
 
-# 或复制到全局 skill 目录
-cp -R skills/my-skill ~/.pi/agent/skills/
+# 安装本仓库中的所有 skills
+npx skills add pidofme/skills
+
+# 只安装一个 skill
+npx skills add pidofme/skills --skill incus-admin
 ```
 
-也可以在 pi settings 中添加 skills 目录：
-
-```json
-{
-  "skills": ["/path/to/this-repo/skills"]
-}
-```
+具体安装目标取决于你使用的 agent/client 以及 `skills` CLI 选项。如有需要，可以交互式选择 agent，或传入 CLI 支持的对应 `--agent` 选项。
 
 ## 发布前检查
 

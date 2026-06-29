@@ -4,7 +4,7 @@
 
 This repository is for developing, organizing, and sharing reusable AI agent skills. Skills in this repository should be written in English by default so they can be shared across agent harnesses and teams more easily.
 
-Each skill should be a self-contained directory with a `SKILL.md` entry file. Skills should generally follow the [Agent Skills](https://agentskills.io/) convention and remain compatible with pi.
+Each skill should be a self-contained directory with a `SKILL.md` entry file. Skills should generally follow the [Agent Skills](https://agentskills.io/) convention and avoid assumptions tied to any single agent implementation.
 
 ## Repository layout
 
@@ -49,25 +49,22 @@ Guidelines:
 - Make `description` specific; agents use it to decide when to load the skill.
 - Use paths relative to the skill directory when referencing scripts, references, and assets.
 
-## Use with pi
+## Install skills
 
-Choose one of the following approaches:
+Use the `skills` CLI with `npx` to install skills from this repository:
 
 ```bash
-# Load one skill directly
-pi --skill /path/to/this-repo/skills/my-skill
+# List available skills without installing
+npx skills add pidofme/skills --list
 
-# Or copy a skill to the global skill directory
-cp -R skills/my-skill ~/.pi/agent/skills/
+# Install all skills from this repository
+npx skills add pidofme/skills
+
+# Install only one skill
+npx skills add pidofme/skills --skill incus-admin
 ```
 
-You can also add the skills directory to pi settings:
-
-```json
-{
-  "skills": ["/path/to/this-repo/skills"]
-}
-```
+The exact installation target depends on your agent/client and the `skills` CLI options. If needed, choose the agent interactively or pass an appropriate `--agent` option supported by the CLI.
 
 ## Pre-release checklist
 

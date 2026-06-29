@@ -2,7 +2,7 @@
 name: your-skill-name
 description: Clearly explain what this skill does, when to use it, and the user requests that should trigger it. Use when the user asks to ...
 license: MIT
-compatibility: Compatible with the Agent Skills convention; tested with pi.
+compatibility: Compatible with the Agent Skills convention.
 ---
 
 # Your Skill Name
